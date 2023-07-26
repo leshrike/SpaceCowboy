@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Fireball
+  - Salamander
+  - Heart
   layers:
   - Default
   - TransparentFX
@@ -41,6 +43,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ParallaxBG
+    uniqueID: 1002182561
     locked: 0
   - name: Background
     uniqueID: 1244558287

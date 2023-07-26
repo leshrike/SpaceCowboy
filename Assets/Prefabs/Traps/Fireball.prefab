@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5021408582198246371}
   m_Layer: 6
   m_Name: Fireball
-  m_TagString: Untagged
+  m_TagString: Fireball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1089538703
-  m_SortingLayer: 2
+  m_SortingLayerID: -1913599071
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8615bf84e9a5a13428ae6275a562a853, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

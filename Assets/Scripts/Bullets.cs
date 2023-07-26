@@ -26,10 +26,9 @@ public class Bullets : MonoBehaviour
             enemy.TakeDamage(40);
         }
 
-        Instantiate(impactEffect, transform.position, transform.rotation);
+        blasterImpact = Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(gameObject);
-
-        //Destroy();
+        Destroy(blasterImpact, 0.3f);
 
     }
 }

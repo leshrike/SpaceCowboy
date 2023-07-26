@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     private Animator animator;
-
+    [SerializeField] AudioSource bulletSound;
     void Awake(){
 
         animator = GetComponent<Animator>();
@@ -19,20 +19,26 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         if(Input.GetButtonDown("Fire1")){
-
-            animator.SetBool("isShooting", true);
+ 
             Shoot();
        
         }else {
 
-            animator.SetBool("isShooting", false);
+            //animator.SetBool("isShooting", false);
         }
     }
 
+    public void Test(){
 
-    void Shoot(){
+        print("Chingo Mototruco");
 
+    }
+    public void Shoot(){
+        
+        print("pingo");
+        animator.SetBool("isShooting", true);
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
+        bulletSound.Play();
+        animator.SetBool("isShooting", false);
     }
 }

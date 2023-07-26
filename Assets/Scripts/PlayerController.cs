@@ -12,15 +12,23 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rigidbody2d;
     private Collider2D standingCollider;
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource heartSoundEffect;
+    float movementButton;
+    private Weapon shootingScript;
 
     // sounds
 
     public bool grounded = true;
 
+    public AudioSource heartSoundSource;
+    public AudioClip heartSound;
+
     void Awake(){
 
         animator = GetComponent<Animator>();
         rigidbody2d = GetComponent<Rigidbody2D>();
+        shootingScript = GetComponent<Weapon>();
     }
 
     // Update is called once per frame
@@ -33,6 +41,7 @@ public class PlayerController : MonoBehaviour
             
             animator.SetBool("Jumping", true);
             rigidbody2d.AddForce(Vector2.up * jumpMovement);
+            jumpSoundEffect.Play();
 
         }
 
@@ -51,7 +60,7 @@ public class PlayerController : MonoBehaviour
         Speed = lateralMovement * Input.GetAxis("Horizontal");
 
         //controls mobile
-        // Speed = lateralMovement * movementButton;
+        //Speed = lateralMovement * movementButton;
         transform.Translate(Vector2.right * Speed * Time.deltaTime);
         animator.SetFloat("Speed", Mathf.Abs(Speed));
 
@@ -72,17 +81,49 @@ public class PlayerController : MonoBehaviour
         // collectible
 
         // enemy
-        if(collider.gameObject.tag == "Enemy" || collider.gameObject.tag == "Boss"){
+        if(collider.gameObject.tag == "Enemy" || collider.gameObject.tag == "Fireball"){
 
             // animator
             animator.SetTrigger("Damaged");    
             //perder vida
+            FindObjectOfType<HealthBar>().loseHP();
+            animator.SetBool("Damaged", false);
+        }
+
+        if(collider.gameObject.tag == "Heart"){
+
+            collider.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            collider.gameObject.GetComponent<Collider2D>().enabled = false;
+            Destroy(collider.gameObject);
+            heartSoundEffect.Play();
+            FindObjectOfType<HealthBar>().gainHP();
         }
     }
 
     public void Die(){
         //this.animator.SetBool("Alive",false);
         GameManager.sharedInstance.gameOver();
+
+    }
+
+    public void Jump(){
+
+            animator.SetBool("Jumping", true);
+            rigidbody2d.AddForce(Vector2.up * jumpMovement);
+            jumpSoundEffect.Play();
+
+
+    }
+
+    public void Move(float amount){
+
+        movementButton = amount;
+
+    }
+
+    public void Attack(){
+        shootingScript.Test();
+        shootingScript.Shoot();
 
     }
 

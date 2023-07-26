@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameState currentGameState = GameState.menu;
     public static GameManager sharedInstance;
     private PlayerController controller;
+    public static float currentScore = 0;
 
     void Awake(){
 
@@ -54,6 +55,11 @@ public class GameManager : MonoBehaviour
         currentGameState = GameState.menu;
         SceneManager.LoadScene("MainMenu");
 
+    }
+
+    public void victory(){
+        currentGameState = GameState.menu;
+        SceneManager.LoadScene("Victory");
     }
 
     public void collectObject(){

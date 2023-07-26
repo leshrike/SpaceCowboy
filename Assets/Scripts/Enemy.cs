@@ -24,9 +24,9 @@ public class Enemy : MonoBehaviour
     void Die(){
 
         explosion = Instantiate(deathExplosion, deathPoint.position, deathPoint.rotation);    
-        
         Destroy(gameObject);
-        Destroy(explosion, 0.7f);
+        Destroy(explosion, 0.4f);
+        GameManager.currentScore = GameManager.currentScore + 100;
 
     }
 }
